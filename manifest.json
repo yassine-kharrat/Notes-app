@@ -1,6 +1,6 @@
 {
-  "name": "My App",
-  "short_name": "App",
+  "name": "Them Notes",
+  "short_name": "Them Notes",
   "description": "A great mobile web app",
   "start_url": "/index.html",
   "display": "standalone",
