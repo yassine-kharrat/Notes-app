@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="description" content="A simple note-taking application to create, manage, and organize your notes.">
     <title>Them notes</title>
     <link rel="icon" href="notes.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
+    <script> 
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
     <div class="sidebar-container">
         <div class="notes-sidebar">
             <button id="toggle-sidebar">
@@ -50,7 +57,7 @@
             
 
             <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">
-                <img id="theme-icon" src="sun.png"/>
+                <img id="theme-icon" alt="Toggle Dark/Light Mode" src="sun.png"/>
             </button>
             
         </div>
@@ -58,10 +65,42 @@
        
         
     </div>
+    <button id="installButton" style="display: inline;">Install App</button>
     <div id="content-area" contenteditable="true" spellcheck="false" style="direction: ltr; text-align: left;">
         Select or create a note to start writing...
     </div>
-    <script src="script.js"></script>
+    
 
+    <script src="script.js"></script>
+    <script>
+        let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the default install prompt
+  e.preventDefault();
+  // Save the event so it can be triggered later
+  deferredPrompt = e;
+
+  // Show your custom "Install" button
+  const installButton = document.getElementById('installButton');
+  installButton.style.display = 'block';
+
+  installButton.addEventListener('click', () => {
+    // Show the install prompt
+    deferredPrompt.prompt();
+    
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+      deferredPrompt = null;
+    });
+  });
+});
+
+    </script>
 </body>
 </html>

@@ -5,6 +5,40 @@ const newGroupButton = document.getElementById("new-group");
 const toggleSidebarButton = document.getElementById("toggle-sidebar");
 const sidebar = document.querySelector(".notes-sidebar");
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then((registration) => {
+      console.log('Service Worker registered with scope:', registration.scope);
+    }).catch((error) => {
+      console.log('Service Worker registration failed:', error);
+    });
+  });
+}
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Save the event so it can be triggered later.
+  deferredPrompt = e;
+  // Show your custom install prompt (e.g., a button).
+  const installButton = document.getElementById('installButton');
+  installButton.style.display = 'block';
+
+  installButton.addEventListener('click', () => {
+    // Show the prompt
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+      deferredPrompt = null;
+    });
+  });
+});
+
 let notes = { groups: {}, notes: {} };
 let currentNoteId = null;
 let draggedNoteId = null;

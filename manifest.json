@@ -1,0 +1,36 @@
+{
+  "name": "My App",
+  "short_name": "App",
+  "description": "A great mobile web app",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/notes.png",
+      "sizes": "543x543",
+      "type": "image/png"
+    },
+    {
+      "src": "/notes2.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "753x914",
+      "type": "image/png",
+      "label": "Mobile View"
+    },
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1837x911",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop View"
+    }
+  ]
+}
