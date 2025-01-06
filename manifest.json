@@ -2,7 +2,7 @@
   "name": "Them Notes",
   "short_name": "Them Notes",
   "description": "A mobile app created for personal use",
-  "start_url": "/",
+  "start_url": "/Notes-app/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
