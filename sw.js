@@ -5,7 +5,7 @@ self.addEventListener('install', (event) => {
         '/',
         '/index.html',
         '/styles.css',
-	'/script.js',
+	      '/script.js',
         // Add other static resources here
       ]);
     })

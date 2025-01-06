@@ -1,8 +1,8 @@
 {
   "name": "Them Notes",
   "short_name": "Them Notes",
-  "description": "A great mobile web app",
-  "start_url": "/index.html",
+  "description": "A mobile app created for personal use",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
