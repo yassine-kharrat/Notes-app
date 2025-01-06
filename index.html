@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Them notes</title>
+    <link rel="icon" href="notes.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar-container">
+        <div class="notes-sidebar">
+            <button id="toggle-sidebar">
+                <img width = 20px src="menu.png" alt="Sidebar Toggle">
+            </button>
+            <button id="new-note" style="border: none; background-color: transparent; cursor: pointer">
+                <img width= 20px src="new.png" alt="New Note">
+            </button>
+            <button id="new-group" style="border: none; background-color: transparent; cursor: pointer;">
+                <img width="20px" src="group.png" alt="New Note" >
+            </button>
+            <ul id="notes-list"></ul>
+            <button id="import-notes" style="border: none; background-color: transparent; cursor: pointer;">
+                <img width="20px" src="import.png" alt="import" >
+            </button>
+            <button id="export-notes" style="border: none; background-color: transparent; cursor: pointer;">
+                <img width="20px" src="export.png" alt="export" >
+            </button>
+            <input type="file" id="file-input" style="display:none;">
+            <script>
+                const exportButton = document.getElementById('export-notes');
+                exportButton.addEventListener('click', function() {
+                    console.log("Export button clicked");
+                    exportNotes();
+                });
+
+                const importButton = document.getElementById('import-notes');
+                const fileInput = document.getElementById('file-input');
+                fileInput.addEventListener('change', function() {
+                    console.log("File selected for import");
+                    importNotes(event);
+                });
+
+                importButton.addEventListener('click', function() {
+                    console.log("Import button clicked");
+                    fileInput.click();  // Opens file dialog
+                });
+            </script>
+            
+            
+
+            <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">
+                <img id="theme-icon" src="sun.png"/>
+            </button>
+            
+        </div>
+
+       
+        
+    </div>
+    <div id="content-area" contenteditable="true" spellcheck="false" style="direction: ltr; text-align: left;">
+        Select or create a note to start writing...
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>

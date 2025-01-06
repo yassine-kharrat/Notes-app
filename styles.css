@@ -1,0 +1,279 @@
+body {
+    margin: 0;
+    font-family: Consolas, 'Courier New', monospace;
+    display: flex;
+    height: 100vh;
+    line-height: 1.4;
+    background-color: #f8f8f8; /* Light background */
+    color: #333; /* Dark text */
+}
+
+.sidebar-container {
+    display: flex;
+    transition: margin-left 0.3s ease;
+}
+
+.notes-sidebar {
+    width: 200px;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #eee; /* White sidebar */
+    transition: width 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0,0,0,.1); /* Subtle shadow instead of border */
+}
+
+.notes-sidebar.collapsed {
+    width: 50px;
+}
+
+.notes-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.group {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    background-color: #eee;
+}
+
+/* Removed vertical line */
+.group::before {
+    display: none;
+}
+.group.collapsed::before{
+    display: none;
+}
+
+.group-toggle {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-right: 5px;
+    color: #666; /* Darker toggle color */
+}
+
+.group .notes-list {
+    margin-left: 20px;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.group.collapsed .notes-list {
+    display: none;
+}
+
+.note-list {
+    margin-bottom: 5px;
+    cursor: pointer;
+    padding: 5px;
+    background-color: #fff; /* Changed to white */
+    border-radius: 3px;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #444;
+    border: 1px solid #ddd;
+}
+
+
+.note-list:hover {
+    background-color: #ddd;
+}
+
+button.delete-btn {
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    color: #888;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    font-family: Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.note-list:hover button.delete-btn {
+    opacity: 1;
+    color: red;
+}
+
+button.delete-btn:hover {
+    color: red;
+}
+
+#content-area {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    outline: none;
+    background-color: #fff; /* White content area */
+    color: #333;
+    box-shadow: -2px 0 5px rgba(0,0,0,.1);
+}
+
+#toggle-sidebar {
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    color: #777;
+}
+
+#toggle-sidebar:hover {
+    color: #555;
+}
+
+
+
+.dragging {
+    opacity: 0.5;
+    background-color: #ddd;
+}
+.group-name-input {
+    border: none;
+    background: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .delete-btn {
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    cursor: pointer; /* Make it look clickable */
+    padding: 0 5px; /* Add some horizontal padding */
+    margin-left: auto; /* Push to the right */
+    font-size: 1em; /* Adjust font size as needed */
+    line-height: 1; /* Adjust line-height to vertically center */
+    color: #888; /* A subtle gray color */
+}
+
+.delete-group-btn {
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    cursor: pointer; /* Make it look clickable */
+    padding: 0 5px; /* Add some horizontal padding */
+    margin-left: auto; /* Push to the right */
+    font-size: 1em; /* Adjust font size as needed */
+    line-height: 1; /* Adjust line-height to vertically center */
+    color: #888; /* A subtle gray color */
+    display: none;
+}
+.group:hover .delete-group-btn {
+    display: inline-block;
+}
+.group .note-list {
+    font-weight: normal; /* Override any bold text styling */
+}
+
+/* Optional hover effect */
+.delete-btn:hover, .delete-group-btn:hover {
+    color: red; /* Darker color on hover */
+}
+
+/* Smooth transition when dragging */
+#notes-list li, .group, .notes-list li {
+    transition: transform 0.3s ease; /* Transition for moving elements */
+}
+
+/* Optional: When an item is being dragged, we can apply a different style */
+.dragging {
+    opacity: 0.5;
+    transform: scale(1.05);
+}
+
+/* Highlight the drop target */
+.drop-target {
+    border: 2px dashed #ccc;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Dark Mode */
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #333; /* Dark background */
+    color: #f8f8f8; /* Light text */
+}
+
+body.dark-mode .notes-sidebar {
+    background-color: #555; /* Dark sidebar */
+    color: #f8f8f8; /* Light text */
+}
+
+body.dark-mode .note-list {
+    background-color: #444; /* Dark note list */
+    color: #f8f8f8; /* Light text */
+    border: 1px solid #666; /* Darker border */
+}
+
+body.dark-mode .note-list:hover {
+    background-color: #666; /* Dark hover effect */
+}
+
+body.dark-mode #content-area {
+    background-color: #444; /* Dark content area */
+    color: #f8f8f8; /* Light text */
+}
+
+body.dark-mode .group {
+    background-color: #555; /* Dark group background */
+    color: #f8f8f8; /* Light text */
+}
+
+body.dark-mode .group:hover {
+    background-color: #666; /* Dark hover effect */
+}
+
+body.dark-mode button.delete-btn {
+    color: #ccc; /* Light gray delete button */
+}
+
+body.dark-mode #toggle-sidebar {
+    color: #ccc; /* Light gray toggle button */
+}
+
+body.dark-mode .delete-group-btn {
+    color: #ccc; /* Light gray delete group button */
+}
+
+#theme-toggle {
+    position: fixed;         /* Fixes the button in place */
+    bottom: 10px;            /* Position it 20px from the bottom */
+    left: 10px;             /* Position it 20px from the right */
+    background: none;        /* Remove background */
+    border: none;            /* Remove border */
+    cursor: pointer;         /* Make it clickable */
+    padding: 10px;           /* Padding for better clickability */
+    z-index: 1000;           /* Ensure it stays on top of other content */
+}
+
+
+#theme-toggle img {
+    width: 30px; /* Adjust size of the icon */
+    height: 30px; /* Adjust size of the icon */
+}
+
+
+.note-image {
+    max-width: 100%;  /* Make sure the image scales responsively */
+    height: auto;
+    display: block;   /* Ensure the image is on its own line */
+    margin: 10px 0;   /* Add margin around the image */
+}
+
+
+
