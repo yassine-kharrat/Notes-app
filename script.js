@@ -6,13 +6,13 @@ const toggleSidebarButton = document.getElementById("toggle-sidebar");
 const sidebar = document.querySelector(".notes-sidebar");
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').then((registration) => {
+  navigator.serviceWorker.register('/Notes-app/sw.js', { scope: '/Notes-app/' })
+    .then(function(registration) {
       console.log('Service Worker registered with scope:', registration.scope);
-    }).catch((error) => {
+    })
+    .catch(function(error) {
       console.log('Service Worker registration failed:', error);
     });
-  });
 }
 
 let deferredPrompt;
