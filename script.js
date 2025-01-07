@@ -76,6 +76,10 @@ function openDb() {
 
 // Save Notes to IndexedDB
 function saveNotes() {
+      if (!db) {
+        console.error("Database is not initialized yet.");
+        return;
+    }
     const transaction = db.transaction([storeName], "readwrite");
     const store = transaction.objectStore(storeName);
     const notesData = {
